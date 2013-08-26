@@ -6,7 +6,7 @@ A tool to parse an arbitrarily large JSON file into a Microsoft SQL Server datab
 Quick Start
 -----------
 
-To set up, extract `JsonImport_jar.jar` to a directory, then use the following command:
+To set up, extract `JsonImport_jar.zip` to a directory, then use the following command:
 
     usage: java -jar JsonImport.jar -f <fieldNames> -s <server> -d <database>
     -i <file> [OPTIONS]
