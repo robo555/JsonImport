@@ -41,7 +41,7 @@ creating blocks of JSON objects then passing them to a thread executor.
 The tool uses its 'best effort' to perform the import, i.e. it will:
 
 * Continue to read the JSON array if it encounters an non-object
-* Assign null value if a field that is missing in a JSON object
+* Assign null value if a field is missing in a JSON object
 * Assign default value if the JSON value type is not compatible with the database field
 * Continues if it encounters an exception when importing an object
 
