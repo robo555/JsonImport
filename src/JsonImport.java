@@ -161,8 +161,8 @@ public class JsonImport {
                 String[] arrFields = fieldNames.split(",");
                 List<Field> fields = new Vector<Field>();
                 try {
-                    //test table exists, and all fields exists in the database before we continue much further
-                    //if the fields exists, get the SQL field type so we can assign null values
+                    //test table exists, and all fields exist in the database before we continue much further
+                    //if the fields exist, get the SQL field type so we can assign null values
                     DatabaseConnection.verifyTable(p, table, arrFields, fields);
 
                     while (node != null) {

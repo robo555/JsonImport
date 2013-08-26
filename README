@@ -35,7 +35,7 @@ For example, to import auctions.json to table Listings on SQL server instance SE
 Usage Guide
 -----------
 
-The tool will verify the fields specified exists in the database table, then processes the file concurrently by
+The tool will verify the fields specified exist in the database table, then processes the file concurrently by
 creating blocks of JSON objects then passing them to a thread executor.
 
 The tool uses its 'best effort' to perform the import, i.e. it will:
