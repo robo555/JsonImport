@@ -1,4 +1,39 @@
+What is it?
+-----------
+
 A tool to parse an arbitrarily large JSON file into a Microsoft SQL Server database.
+
+Quick Start
+-----------
+
+To set up, extract `JsonImport_jar.jar` to a directory, then use the following command:
+
+    usage: java -jar JsonImport.jar -f <fieldNames> -s <server> -d <database>
+    -i <file> [OPTIONS]
+    -B <blockSize>     number of JSON objects per thread. If empty, it
+                       defaults to 500.
+    -d <database>      name of the database to import to.
+    -f <fieldNames>    comma separated list of column names to import. Values
+                       are imported from JSON objects' matching field names.
+    -I <instance>      instance name of the SQL server.
+    -i <fileName>      file path of the JSON import file.
+    -N <threadCount>   number of threads to use. If empty, it defaults to
+                       number of processors available.
+    -P <port>          port of the SQL server. If empty, it defaults to 1433.
+    -p <password>      password to log in to database.
+    -s <server>        server name of the SQL server. Do not include instance
+                       name.
+    -T <table>         name of the table to import to. If empty, it defaults
+                       to name of JSON array.
+    -u <user>          username to log in to database.
+    
+For example, to import auctions.json to table Listings on SQL server instance SERVER1\SQLEXPRESS, using 10 threads:
+
+    java -jar JsonImport.jar -f "ListingId, Title, StartPrice" -s SERVER1 -I SQLEXPRESS -P 1434 -d Auction
+    -T Listings -u robo -p hunter13 -N 10 -i C:\Users\Robo\auctions.json
+
+Usage Guide
+-----------
 
 The tool will verify the fields specified exists in the database table, then processes the file concurrently by
 creating blocks of JSON objects then passing them to a thread executor.
@@ -26,7 +61,8 @@ following text without errors:
     }
     }
 
-Note when using SQL Server with named instances:
+Using SQL Server with named instances
+-------------------------------------
 
 Microsoft SQL Server defaults to listen on port 1433, but a named instance will listen on a different port. This can
 be found by looking at the SQL Server log file in SQL Server Management Studio > Management > SQL Server Logs.
@@ -34,6 +70,9 @@ Look for something like `Server is listening on [ 'any' <ipv4> 56866]`. In this 
 
 Alternatively, one can start the SQL Server Browser service, which listens on port 1434. Connections to port 1434
 will get redirected to the correct SQL Server port.
+
+Third party packages
+--------------------
 
 The tool uses the following third party packages:
 
