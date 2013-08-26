@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact name="JsonImport:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JsonImport_jar</output-path>
+    <root id="root">
+      <element id="archive" name="JsonImport.jar">
+        <element id="module-output" name="JsonImport" />
+      </element>
+      <element id="file-copy" path="$APPLICATION_HOME_DIR$/lib/junit-4.10.jar" />
+      <element id="file-copy" path="$APPLICATION_HOME_DIR$/lib/junit.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jtds-1.3.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/commons-cli-1.2.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jackson-core-2.2.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jackson-databind-2.2.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/lib/jackson-annotations-2.2.0.jar" />
+    </root>
+  </artifact>
+</component>

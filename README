@@ -1,0 +1,44 @@
+A tool to parse an arbitrarily large JSON file into a Microsoft SQL Server database.
+
+The tool will verify the fields specified exists in the database table, then processes the file concurrently by
+creating blocks of JSON objects then passing them to a thread executor.
+
+The tool uses its 'best effort' to perform the import, i.e. it will:
+
+* Continue to read the JSON array if it encounters an non-object
+* Assign null value if a field that is missing in a JSON object
+* Assign default value if the JSON value type is not compatible with the database field
+* Continues if it encounters an exception when importing an object
+
+The tool will import the first array it finds in the JSON file, i.e. the array can be nested inside objects or come
+after other fields in the file. It will skip any nodes in the array that is not an object.
+
+For example, if the import table's field type is correct, the tool will import the 'auctions' array in the
+following text without errors:
+
+    {
+    "realm":{"name":"Aegwynn","slug":"aegwynn"},
+    "alliance":{"auctions":[
+    {"auc":2073382230,"item":[1, 2, 3],"owner":"Keely"},
+    "random string",
+    {"auc":2073949971,"item":52364,"owner":"Facepwnded"},
+    {"auc":2073218804,"item":23107,"owner":"Tephelie"}]}
+    }
+    }
+
+Note when using SQL Server with named instances:
+
+Microsoft SQL Server defaults to listen on port 1433, but a named instance will listen on a different port. This can
+be found by looking at the SQL Server log file in SQL Server Management Studio > Management > SQL Server Logs.
+Look for something like `Server is listening on [ 'any' <ipv4> 56866]`. In this case, 56866 is the port number.
+
+Alternatively, one can start the SQL Server Browser service, which listens on port 1434. Connections to port 1434
+will get redirected to the correct SQL Server port.
+
+The tool uses the following third party packages:
+
+    commons-cli-1.2.jar            Apache Commons CLI for parsing command line options.
+    jackson-core-2.2.0.jar         Jackson JSON Processor for parsing JSON file.
+    jackson-annotations-2.2.0.jar
+    jackson-databind-2.2.0
+    jtds-1.3.1.jar                 jTDS JDBC Driver for connecting to Microsoft SQL Server.
